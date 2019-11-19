@@ -8,7 +8,7 @@ SCRIPT
 $create_bastion = <<SCRIPT
 echo "Download some images..."
 docker pull hello-world
-docker pull centos
+docker pull centos:7
 docker pull ubuntu
 docker pull alpine
 docker pull nginx
@@ -17,17 +17,11 @@ docker pull tomcat
 docker pull mysql:5.6
 docker pull docker.io/anchore/anchore-engine
 echo "Download and create anchore-engine with docker-compose..."
-mkdir /home/vagrant/aevolume
 cd /home/vagrant/aevolume
-docker create --name ae docker.io/anchore/anchore-engine
-docker cp ae:/docker-compose.yaml /home/vagrant/aevolume/docker-compose.yaml
-docker rm ae
-sed -i 's/2.1/2.0/g' /home/vagrant/aevolume/docker-compose.yaml
 docker-compose pull
 echo "Download docker-bench-security..."
 cd /home/vagrant/
 git clone https://github.com/docker/docker-bench-security.git
-docker run -ti -d -p 5000:5000 -e HOST=localhost -e PORT=5000 -v /var/run/docker.sock:/var/run/docker.sock dockersamples/visualizer
 SCRIPT
 
 Vagrant.configure('2') do |config|
@@ -44,6 +38,7 @@ Vagrant.configure('2') do |config|
     bastion.vm.synced_folder ".", "/vagrant"
     bastion.vm.provision "shell", inline: $install_docker, privileged: true
     bastion.vm.provision "shell", inline: $create_bastion, privileged: true
+    bastion.vm.synced_folder "aevolume", "/home/vagrant/aevolume"
     bastion.vm.provider "virtualbox" do |vb|
       vb.name = "bastion"
       vb.memory = "4096"
