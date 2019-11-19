@@ -15,7 +15,11 @@ Una vez instaladas las herramientas mencionadas anteriormente, realizar los sigu
 ```
 git clone https://github.com/shokone/Vagrant-Docker.git
 ```
-- Una vez terminada la ejecución del anterior comando, acceder a la carpeta creada "Vagrant-Docker" y ejecutar el siguiente comando para levantar el entorno
+- Una vez terminada la ejecución del anterior comando, acceder a la carpeta creada "Vagrant-Docker" 
+```
+cd Vagrant-Docker
+```
+- y ejecutar el siguiente comando para levantar el entorno
 ```
 vagrant up
 ```
