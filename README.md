@@ -3,7 +3,7 @@
 ## Requisitos
 
 ## Herramientas
-- Virtual Box (versión 6 o superior): https://www.virtualbox.org/
+- Virtual Box (versión 6): https://www.virtualbox.org/
 - Git: https://git-scm.com/
 - Vagrant: https://www.vagrantup.com/downloads.html
 
