@@ -39,6 +39,7 @@ Vagrant.configure('2') do |config|
     bastion.vm.provision "shell", inline: $install_docker, privileged: true
     bastion.vm.provision "shell", inline: $create_bastion, privileged: true
     bastion.vm.synced_folder "aevolume", "/home/vagrant/aevolume"
+    bastion.vm.synced_folder "resources", "/home/vagrant/resources"
     bastion.vm.provider "virtualbox" do |vb|
       vb.name = "bastion"
       vb.memory = "4096"
